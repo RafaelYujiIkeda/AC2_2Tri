@@ -1,17 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Emprestimo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <h1>
+    Calcular Emprestimo
+  </h1>
+
+  <ion-list>
+  <ion-item>
+  <ion-input label="Valor do empréstimo" label-placement="floating" type="number" fill="outline" placeholder="Digite o Valor"></ion-input>
+</ion-item>
+
+  <ion-item>
+  <ion-input label="Taxa de Juros mensal" label-placement="floating" type="number" fill="outline" placeholder="Digite em decimal"></ion-input>
+</ion-item>
+
+  <ion-item>
+  <ion-input label="Número de meses a pagar" label-placement="floating" type="number" fill="outline" placeholder="Digite o Número"></ion-input>
+</ion-item>
+</ion-list>
+
 </ion-content>
