@@ -1,29 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Emprestimo
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-
-  <h1>
-    Calcular Emprestimo
-  </h1>
-
-  <ion-list>
-  <ion-item>
-  <ion-input label="Valor do empréstimo" label-placement="floating" type="number" fill="outline" placeholder="Digite o Valor"></ion-input>
-</ion-item>
-
-  <ion-item>
-  <ion-input label="Taxa de Juros mensal" label-placement="floating" type="number" fill="outline" placeholder="Digite em decimal"></ion-input>
-</ion-item>
-
-  <ion-item>
-  <ion-input label="Número de meses a pagar" label-placement="floating" type="number" fill="outline" placeholder="Digite o Número"></ion-input>
-</ion-item>
-</ion-list>
-
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Calculadora de Amortização</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Valor Emprestado</ion-label>
+        <ion-input type="number" [(ngModel)]="valorEmp"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Taxa Mensal (%)</ion-label>
+        <ion-input type="number" [(ngModel)]="taxaMensal"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Número de Meses</ion-label>
+        <ion-input type="number" [(ngModel)]="numeroMes"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="calcular()">Calcular</ion-button>
+      <ion-item *ngIf="valorParcela > 0">
+        <ion-label>Valor da Parcela: {{ valorParcela | currency:'BRL' }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
