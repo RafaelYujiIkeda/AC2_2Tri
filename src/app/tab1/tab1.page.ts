@@ -6,18 +6,18 @@ import { AlertController } from '@ionic/angular';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: false,
-  // Removido imports e mantido standalone: false
 })
 export class Tab1Page {
   valorEmp: number = 0;
   taxaMensal: number = 0;
   numeroMes: number = 0;
   valorParcela: number = 0;
+  valorTotal: number = 0;
 
   constructor(private alertController: AlertController) {}
 
   async calcular() {
-    // Validações iniciais
+
     if (this.valorEmp <= 0 || this.taxaMensal <= 0 || this.numeroMes <= 0) {
       const alert = await this.alertController.create({
         header: 'Erro',
@@ -28,7 +28,7 @@ export class Tab1Page {
       return;
     }
 
-    // Verifica se a taxa mensal é maior que 20%
+
     if (this.taxaMensal > 20) {
       const alert = await this.alertController.create({
         header: 'Cuidado',
@@ -36,10 +36,9 @@ export class Tab1Page {
         buttons: ['OK'],
       });
       await alert.present();
-      return; // Interrompe a execução se a taxa for inválida
+      return;
     }
 
-    // Exibe alerta para taxa menor ou igual a 20%
     if (this.taxaMensal <= 20) {
       const alert = await this.alertController.create({
         header: 'Cuidado',
@@ -49,12 +48,11 @@ export class Tab1Page {
       await alert.present();
     }
 
-    // Converte a taxa mensal de porcentagem para decimal (ex.: 5% -> 0.05)
     const taxaDecimal = this.taxaMensal / 100;
 
-    // Fórmula de amortização: P = [V * i] / [1 - (1 + i)^(-n)]
     try {
       this.valorParcela = (this.valorEmp * taxaDecimal) / (1 - Math.pow(1 + taxaDecimal, -this.numeroMes));
+      this.valorTotal = this.valorParcela * this.numeroMes;
       if (!isFinite(this.valorParcela)) {
         throw new Error('Cálculo inválido');
       }

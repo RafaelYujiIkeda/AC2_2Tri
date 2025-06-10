@@ -1,17 +1,63 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Simulação de Despesas Mensais</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Renda Líquida Mensal</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Renda: R$ {{ netIncome | number:'1.2-2' }}</ion-label>
+        <ion-range min="0" max="20000" step="100" [(ngModel)]="netIncome" color="primary">
+          <ion-icon slot="start" name="cash-outline"></ion-icon>
+          <ion-icon slot="end" name="cash-outline"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Despesas Mensais</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Moradia (R$)</ion-label>
+        <ion-input type="number" [(ngModel)]="expenses[0]" (ionChange)="calculateTotal()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Alimentação (R$)</ion-label>
+        <ion-input type="number" [(ngModel)]="expenses[1]" (ionChange)="calculateTotal()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Transporte (R$)</ion-label>
+        <ion-input type="number" [(ngModel)]="expenses[2]" (ionChange)="calculateTotal()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Lazer (R$)</ion-label>
+        <ion-input type="number" [(ngModel)]="expenses[3]" (ionChange)="calculateTotal()"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Resumo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Total de Despesas: R$ {{ totalExpenses | number:'1.2-2' }}</ion-label>
+      </ion-item>
+      <ion-item *ngIf="totalExpenses > netIncome" color="danger">
+        <ion-label>Alerta: Suas despesas excedem sua renda!</ion-label>
+      </ion-item>
+      <ion-button expand="block" (click)="checkExpenses()" [disabled]="totalExpenses === 0">
+        Verificar Despesas
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

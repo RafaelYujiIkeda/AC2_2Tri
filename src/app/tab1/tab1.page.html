@@ -6,19 +6,20 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Valor Emprestado</ion-label>
-        <ion-input type="number" [(ngModel)]="valorEmp"></ion-input>
+        <ion-input type="number" placeholder="Digite o valor" [(ngModel)]="valorEmp"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Taxa Mensal (%)</ion-label>
-        <ion-input type="number" [(ngModel)]="taxaMensal"></ion-input>
+        <ion-input type="number" placeholder="Digite a taxa" [(ngModel)]="taxaMensal"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Número de Meses</ion-label>
-        <ion-input type="number" [(ngModel)]="numeroMes"></ion-input>
+        <ion-input type="number" placeholder="Digite a quantidade de mês" [(ngModel)]="numeroMes"></ion-input>
       </ion-item>
       <ion-button expand="block" (click)="calcular()">Calcular</ion-button>
       <ion-item *ngIf="valorParcela > 0">
         <ion-label>Valor da Parcela: {{ valorParcela | currency:'BRL' }}</ion-label>
+        <ion-label>Valor da Parcela: {{ valorTotal | currency:'BRL' }}</ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>
